@@ -21,6 +21,17 @@ a {
 	text-decoration: none;
 }
 
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
 .main-navigation {
 	font-size: 16px;
 	line-height: 20px;
@@ -191,3 +202,150 @@ a {
 	text-decoration: none;
 }
 
+
+
+/* сеточные стили */
+
+html, body {
+	min-width: 1122px;
+	min-height: 1750px;
+}
+
+.main-header {
+	margin-bottom: 75px; /* внешний отступ от логотипа до преимуществ */
+
+	/* временно для сетки */
+	min-height: 285px;
+}
+
+.main-navigation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	/* временно для сетки */
+	min-height: 285px;
+	background-color: transparent;
+}
+
+.main-header-logo {
+	order: 2;
+	width: 368px;
+	height: 153px;
+}
+
+.site-navigation {
+	width: 620px;
+	margin: 0;
+	padding: 0;
+
+	/* временно для сетки */
+	min-height: 70px;
+}
+
+.user-navigation {
+	width: 140px;
+	margin: 0;
+	padding: 0;
+
+	/* временно для сетки */
+	min-height: 70px;
+}
+
+.main-navigation-wrapper {
+	width: 100%;
+	margin-bottom: 60px;
+
+	background-color: #000000;
+
+	/* временно для сетки */
+	min-height: 70px;
+}
+
+.container {
+	width: 940px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.main-navigation-wrapper .container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.feature-list {
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+
+	/* временно для сетки */
+	min-height: 170px;
+}
+
+.feature-item {
+	width: 300px;
+
+	/* временно для сетки */
+	min-height: 170px;
+}
+
+.features {
+	margin-bottom: 80px;
+}
+
+.index-columns {
+	display: flex;
+	justify-content: space-between;
+	padding: 50px 80px;
+	margin-bottom: 35px;
+
+	/* временно для сетки */
+	
+}
+
+.news {
+	width: 380px;
+	/* временно для сетки */
+	min-height: 315px;
+}
+
+.gallery {
+	width: 300px;
+	/* временно для сетки */
+	min-height: 315px;
+}
+
+.main-footer {
+	padding: 60px 0;
+	margin-top: 65px;
+	/* временно для сетки */
+	min-height: 180px;
+}
+
+.main-footer .container {
+	display: flex;
+}
+
+.footer-contacts {
+	width: 320px;
+	margin: 0;
+	margin-right: 80px;
+	/* временно для сетки */
+	min-height: 100px;
+}
+
+.footer-social {
+	width: 145px;
+	/* временно для сетки */
+	min-height: 100px;
+}
+
+.footer-copyright {
+	width: 150px;
+	margin: 0;
+	margin-left: auto;
+
+	/* временно для сетки */
+	min-height: 100px;
+}
