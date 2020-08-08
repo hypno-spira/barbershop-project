@@ -21,13 +21,20 @@ a {
 	text-decoration: none;
 }
 
-.visually-hidden {
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
 	position: absolute;
+
 	width: 1px;
 	height: 1px;
 	margin: -1px;
 	border: 0;
 	padding: 0;
+
+	white-space: nowrap;
+
+	clip-path: inset(100%);
 	clip: rect(0 0 0 0);
 	overflow: hidden;
 }
@@ -40,6 +47,12 @@ a {
 }
 
 .button {
+	/* новое */
+
+	display: inline-block; /* подразумевается, что есть несколько кнопок в ряд */
+	padding: 10px 30px;
+	margin-right: 16px; /* по макету 20, но есть отступ по умолчанию */
+
 	font: inherit;
 	text-align: center;
 	color: #ffffff;
@@ -53,6 +66,13 @@ a {
 .button:focus,
 .button:active {
 	background-color: #663d15;
+}
+
+.button.disabled,
+.button:disabled {
+	cursor: default;
+	opacity: 0.5;
+	background-color: #000000;
 }
 
 .site-navigation,
@@ -83,23 +103,66 @@ a {
 .feature-item h3 {
 	font-size: 30px;
 	line-height: 42px;
+
+	/* добавляем потом */
+	margin: 0;
+	margin-bottom: 60px;
+
+	position: relative;
+}
+
+.feature-item h3::after {
+	content: "";
+
+	position: absolute;
+	bottom: -30px;
+	left: 50%;
+
+	width: 20px;
+	height: 20px;
+	margin-left: -10px;
+
+	background-color: #ffffff;
+
+	transform: rotate(45deg);
+}
+
+.feature-item p {
+	margin: 0 10px;
 }
 
 .index-columns {
 	color: #000000;
 	background-color: #f8f5f2;
-	background-image: url(../img/pattern-white.png);
-	background-position: 0 0;
-	background-repeat: repeat;
+	background-image: 
+		url(../img/shadow.png),
+		url(../img/pattern-white.png);
+	background-position: center, 0 0;
+	background-repeat: no-repeat, repeat;
 }
 
 .index-columns h2 {
 	font-size: 30px;
 	line-height: 42px;
+
+	margin: 0;
+	margin-bottom: 25px;
 }
 
 .news-list {
 	list-style: none;
+
+	margin: 0;
+	margin-bottom: 25px;
+	padding: 0;
+}
+
+.news-item {
+	margin-bottom: 25px;
+}
+
+.news-item p {
+	margin: 0;
 }
 
 .news-item time {
@@ -109,9 +172,86 @@ a {
 .gallery-content {
 	background-color: #cccccc;
 	border: 7px solid #ffffff;
+
+	/* новое */
+	height: 164px;
+	margin: 0;
+}
+
+.gallery-content img {
+	width: 286px;
+	height: 164px;
+}
+
+.gallery-container {
+	position: relative;
+
+	height: 260px;
+}
+
+.gallery-button {
+	box-sizing: border-box;
+	position: absolute;
+	width: 140px;
+	bottom: 0; /* обе кнопки прижаты к низу */
+}
+
+.gallery-button-back {
+	left: 0;
+}
+
+.gallery-button-next {
+	right: 0;
+	margin-right: 0;
+}
+
+.contacts {
+	width: 380px;
+	margin-bottom: 25px;
+}
+
+.contacts p {
+	margin: 0;
+	margin-bottom: 25px;
+}
+
+.appointment {
+	width: 300px;
+}
+
+.appointment-info {
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+.appointment-form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.appointment-item {
+	width: 140px;
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+/* делаем лэйблы блоковыми, чтобы сделать отступы */
+.appointment-item label {
+	display: block;
+	margin-bottom: 9px;
+	margin-left: 15px;
 }
 
 .appointment-item input {
+	box-sizing: border-box; /* чтобы бордер влезал в блок*/
+	width: 140px;
+
+	padding-top: 8px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 7px;
+
 	font: inherit;
 	background-color: transparent;
 	border: 2px sold #000000;
@@ -119,6 +259,12 @@ a {
 
 .appointment-item input:focus {
 	border-color: #663d15;
+}
+
+.appointment .button {
+	display: block;
+	width: 100%;
+	margin-right: 0;
 }
 
 .main-footer {
@@ -145,10 +291,38 @@ a {
 
 .footer-social ul {
 	list-style: none;
+
+	display: flex;
+	width: 141px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0 auto;
+	padding: 0;
 }
 
 .social-button {
 	color: #ffffff;
+
+	width: 43px;
+	height: 43px;
+
+	background-color: #000000;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px; /*чтобы элементы не слиплись снизу, если появятся новые*/
+}
+
+.social-button:hover,
+.social-button:focus {
+	background-color: #ffffff;
+}
+
+/* замена цвета свгшной иконки*/
+.social-button:hover path, 
+.social-button:focus path{
+	fill: #000000;
 }
 
 .footer-copyright {
@@ -159,6 +333,11 @@ a {
 .footer-copyright .button:focus {
 	color: #000000;
 	background-color: #ffffff;
+}
+
+.footer-copyright .button {
+	display: block;
+	margin-right: 0;
 }
 
 .modal {
@@ -204,7 +383,7 @@ a {
 
 
 
-/* сеточные стили */
+/* МАКРОСЕТКА */
 
 html, body {
 	min-width: 1122px;
@@ -239,17 +418,15 @@ html, body {
 	margin: 0;
 	padding: 0;
 
-	/* временно для сетки */
-	min-height: 70px;
+	display: flex;
+	flex-wrap: wrap; /* вкл многострочность */
+
 }
 
 .user-navigation {
 	width: 140px;
 	margin: 0;
 	padding: 0;
-
-	/* временно для сетки */
-	min-height: 70px;
 }
 
 .main-navigation-wrapper {
@@ -258,8 +435,7 @@ html, body {
 
 	background-color: #000000;
 
-	/* временно для сетки */
-	min-height: 70px;
+	
 }
 
 .container {
@@ -285,9 +461,7 @@ html, body {
 
 .feature-item {
 	width: 300px;
-
-	/* временно для сетки */
-	min-height: 170px;
+	text-align: center;
 }
 
 .features {
@@ -299,15 +473,15 @@ html, body {
 	justify-content: space-between;
 	padding: 50px 80px;
 	margin-bottom: 35px;
-
-	/* временно для сетки */
 	
 }
 
 .news {
 	width: 380px;
-	/* временно для сетки */
-	min-height: 315px;
+
+
+	/*gjnjv */
+
 }
 
 .gallery {
@@ -319,8 +493,6 @@ html, body {
 .main-footer {
 	padding: 60px 0;
 	margin-top: 65px;
-	/* временно для сетки */
-	min-height: 180px;
 }
 
 .main-footer .container {
@@ -331,21 +503,75 @@ html, body {
 	width: 320px;
 	margin: 0;
 	margin-right: 80px;
-	/* временно для сетки */
-	min-height: 100px;
 }
 
 .footer-social {
 	width: 145px;
-	/* временно для сетки */
-	min-height: 100px;
+}
+
+.footer-social b {
+	display: block;
+	margin-bottom: 15px;
 }
 
 .footer-copyright {
 	width: 150px;
 	margin: 0;
 	margin-left: auto;
+}
 
-	/* временно для сетки */
-	min-height: 100px;
+.footer-copyright b {
+	display: block;
+	margin-bottom: 15px;
+}
+
+
+
+/* МИКРОСЕТКА */
+
+img {
+	max-width: 100%; /* чтобы картинка не вылазила из родителя */
+	height: auto; /* для сохранения пропорций */
+}
+
+.site-navigation a,
+.user-navigation a {
+	display: block; /* включили блок, чтобы начали работать паддинги */
+	padding: 25px 20px;
+	vertical-align: middle;
+
+	color: #ffffff;
+}
+
+.user-navigation {
+	max-width: 140px;
+	display: flex;
+}
+
+.user-navigation .login-link {
+	position: relative;
+	padding-left: 50px;
+}
+
+.login-link::before {
+	content: "";
+
+	position: absolute;
+	top: 27px;
+	left: 24px;
+
+	width: 16px;
+	height: 18px;
+	
+	background-image: url(../img/login.svg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+
+	opacity: 0.3;
+}
+
+.login-link:hover::before,
+.login-link:focus::before,
+.login-link:active::before {
+	opacity: 1;
 }
